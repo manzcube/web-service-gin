@@ -3,17 +3,32 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
+	"os"
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func main() {
+	// Load dotenv variables
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatalf("err loading: %v", err)
+	}
+
+	// Take mongo URI
+	mongoURI := os.Getenv("MONGO_URI")
+
+	// Set a timeout for context
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI("mongodb+srv://manzcube:v83mPIximiGPKnvL@cluster0.vlidjnr.mongodb.net/?retryWrites=true&w=majority"))
+
+	// Connect to MONGODB
+	client, err := mongo.Connect(ctx, options.Client().ApplyURI(mongoURI))
 	if err != nil {
 		panic(err)
 	}
@@ -23,6 +38,8 @@ func main() {
 			panic(err)
 		}
 	}()
+
+	// Initialize GIN router
 
 	router := gin.Default()
 	router.GET("/products", func(c *gin.Context) {
