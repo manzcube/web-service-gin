@@ -20,7 +20,7 @@ func getProducts(c *gin.Context, client *mongo.Client) {
 	// execute the find query and get a cursor over te results
 	cursor, err := collection.Find(context.TODO(), filter)
 	if err != nil {
-		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error on find": err.Error()})
 		return
 	}
 
@@ -30,6 +30,9 @@ func getProducts(c *gin.Context, client *mongo.Client) {
 		c.AbortWithStatusJSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return
 	}
+
+	// CORS
+	// c.Header("Access-Control-Allow-Origin", "http://localhost:3000")
 
 	// return the results as JSON
 	c.IndentedJSON(http.StatusOK, results)

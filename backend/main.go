@@ -4,44 +4,43 @@ import (
 	"context"
 	"fmt"
 	"log"
-	"os"
 	"time"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
 func main() {
-	// Load dotenv variables
-	err := godotenv.Load()
+	// Connect to DataBase
+	client, err := ConnectDB()
 	if err != nil {
-		log.Fatalf("err loading: %v", err)
+		log.Printf("Error connecting to mongodb: %v", err)
 	}
 
-	// Take mongo URI
-	mongoURI := os.Getenv("MONGO_URI")
-
-	// Set a timeout for context
-	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	// Create a context in order to disconnect
+	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 
-	// Connect to MONGODB
-	client, err := mongo.Connect(ctx, options.Client().ApplyURI(mongoURI))
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println("Connected to MongoDB")
+	// Close connection
 	defer func() {
 		if err = client.Disconnect(ctx); err != nil {
 			panic(err)
 		}
 	}()
 
-	// Initialize GIN router
+	// Set gin to release mode
+	gin.SetMode(gin.ReleaseMode)
 
+	// Initialize GIN router
 	router := gin.Default()
+
+	// Add CORS middleware
+	router.Use(cors.Default())
+
+	// Options
+	router.ForwardedByClientIP = true
+	router.SetTrustedProxies([]string{"127.0.0.1:3000"})
+
 	router.GET("/products", func(c *gin.Context) {
 		getProducts(c, client)
 	})
@@ -58,5 +57,7 @@ func main() {
 		deleteProduct(c, client)
 	})
 
+	// Comunicate
+	fmt.Printf("GIN Server listening on port 8080\n")
 	router.Run("localhost:8080")
 }

@@ -1,0 +1,155 @@
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+body {
+  margin: 0;
+  box-sizing: border-box;
+  min-height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* VIEWS */
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+}
+
+.View {
+  padding: 10ch;
+  color: #454545;
+}
+
+.Login {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #642b2b;
+  background-image: -webkit-linear-gradient(150deg, #eb7373 55%, #ffffff 35%);
+}
+
+.Login p {
+  margin-right: 20%;
+  font-size: 20ch;
+  font-weight: 800;
+  color: #fff;
+}
+
+
+/* COMPONENTS RULESETS */
+.Navbar {
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid rgb(133, 133, 133); 
+  margin: 2ch auto;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5ch;
+  padding: 2ch;
+}
+
+/* ELEMENTS RULESETS */
+.Link {
+  text-decoration: none;
+  color: #454545;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.5ch;
+}
+
+.Link:hover {
+  text-decoration: underline;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 20%;
+  gap: 5ch;
+  border: 0.5px rgb(205, 205, 205) solid;
+  box-shadow: 0 3px 5px 1px rgb(209, 209, 209);
+  padding: 4ch 3ch;
+  margin: 20ch;
+  border-radius: 8px;
+}
+
+.form h1 {
+  font-size: 2.5ch;
+  text-align: center;
+  color: #454545;
+  margin: 0;
+}
+
+.boxes {
+  display: flex;
+  flex-direction: column;
+  gap: 1ch;
+  color: #4d4d4d;
+}
+
+.button {
+  margin: 0 auto;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.2rem;
+  font-size: 1.7ch;
+  border: 0;
+  color: #fff;
+  background: #eb7373;
+  transition: background-color .5s ease, transform .5s ease;
+}
+.button:active {
+  transition: margin-bottom .2s ease,margin-bottom .1s ease;
+}
+
+.button:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.button-secondary {
+  margin: 0 auto;
+  padding: 1ch 2ch;
+  border-radius: 5px;
+  font-size: 1.4ch;
+  border: 0;
+  color: #fff;
+  background: #a89891;
+  text-decoration: none;
+}
+
+.button-secondary:hover {
+  opacity: 0.9;
+  transform:scale(0.95,0.95);
+  -webkit-transform:scale(0.95,0.95);
+  -moz-transform:scale(0.95,0.95);
+  cursor: pointer;
+}
+
+.input {
+  background-color: #ffffff;
+  border-radius: 4px;
+  border: 1px solid rgb(202, 202, 202);
+  outline: none;
+  padding: 1.5ch;
+  color: #565656;
+}
+
+label {
+  text-transform: capitalize;
+}
