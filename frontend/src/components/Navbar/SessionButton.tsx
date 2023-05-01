@@ -1,9 +1,9 @@
 // Lib
 import { useNavigate, Link } from 'react-router-dom'
 // Hooks
-import { useAppDispatch, useAppSelector } from '../app/hooks'
+import { useAppDispatch, useAppSelector } from '../../app/hooks'
 // Reducers
-import { closeSession, selectUser } from '../features/auth/userSlice'
+import { closeSession, selectUser } from '../../features/auth/userSlice'
 
 
 const SessionButton = () => {
@@ -18,11 +18,11 @@ const SessionButton = () => {
     }
 
     return !user ? (
-        <Link className="button-secondary" to="/login">Sign In</Link>
+        <Link className="session-button" to="/login">Sign In</Link>
     ):(
         <button 
             type="button" 
-            className="button-secondary" 
+            className='session-button'
             onClick={onSignOut}
         >
             Sign Out

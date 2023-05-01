@@ -1,12 +1,24 @@
 import { ObjectId } from "bson";
 import React from "react"
 
-export interface Product {
+export interface ProductType {
     _id?: ObjectId,
     name: string,
     price: number,
-    quantity: number,
+    qty: number,
     description: string,
+    img: string,
+}
+
+export interface ProductProps {
+    prod: {
+        name: string;
+        price: number;
+        qty: number;
+        description: string;
+        img: string;
+    };
+    index: number;
 }
 
 export interface FormData {
@@ -14,10 +26,11 @@ export interface FormData {
     password: string
 }
 
-export type ProductsList = Product[]
+export type ProductsList = ProductType[]
 
 export interface LoginFormProps {
     onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    formData: FormData
+    formData: FormData;
+    msg: string;
 }

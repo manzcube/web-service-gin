@@ -1,0 +1,34 @@
+.Brands {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2)),url("../../resources/brands.avif");
+  background-size: cover;
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  color: #fff;
+  &::-webkit-scrollbar{
+    width: 0;
+  }
+  h1 {
+    width: 100%;
+    position: absolute;
+    top: 35%;
+    text-align: center;
+    font-size: 6ch;
+    font-weight: 800;
+    text-transform: uppercase;
+    transition: all .5s ease-in;
+    &:after {
+      opacity: 0;
+      transition: all .5s ease-in;
+    }
+  }
+}
+
+.Products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10ch;
+}

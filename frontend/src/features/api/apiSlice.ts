@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { ProductsList, Product } from "./types";
+import { ProductsList, ProductType } from "./types";
 
 export const apiSlice = createApi({
     reducerPath: "api",
@@ -14,27 +14,27 @@ export const apiSlice = createApi({
                 method: "GET",
             })
         }),
-        getOneProducts: builder.query<Product, { id: string }>({
+        getOneProducts: builder.query<ProductType, { id: string }>({
             query: (id) =>  ({
                 url: "/products",
                 method: "GET",
             })
         }),
-        createProduct: builder.mutation<Product, { body: Product }>({
+        createProduct: builder.mutation<ProductType, { body: ProductType }>({
             query: (body) =>  ({
                 url: "/products",
                 method: "POST",
                 body,
             })
         }),
-        updateProduct: builder.mutation<Product, { body: Product, id: string}>({
+        updateProduct: builder.mutation<ProductType, { body: ProductType, id: string}>({
             query: ({ body, id }) =>  ({
                 url: `/products/${id}`,
                 method: "PUT",
                 body,
             })
         }),
-        deleteProduct: builder.mutation<Product, {id: string}>({
+        deleteProduct: builder.mutation<ProductType, {id: string}>({
             query: (id) =>  ({
                 url: `/products/${id}`,
                 method: "DELETE",

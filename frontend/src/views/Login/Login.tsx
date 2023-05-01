@@ -1,25 +1,23 @@
 // Lib and Hooks
 import React, { useState, memo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAppDispatch } from '../app/hooks'
-import { setUser } from '../features/auth/userSlice'
+import { useAppDispatch } from '../../app/hooks'
+import { setUser } from '../../features/auth/userSlice'
 
 // Components
-import Box from '../components/Box'
+import Box from '../../components/Box'
 
 // Utils
-import { checkData } from '../utils/utils'
-import { onChange } from '../utils/utils'
-import LoginForm from '../components/LoginForm'
+import { checkData } from '../../utils/utils'
+import { onChange } from '../../utils/utils'
+import LoginForm from '../../components/Login/LoginForm'
 
-// Memo
-const MemoizedLoginForm = memo(LoginForm)
 
 const Login = () => {
   console.log("LOGIN IS RENDERED")
-
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+  const [errMsg, setErrMsg] = useState("")
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -35,11 +33,13 @@ const Login = () => {
       navigate("/")
       return 
     }  
-    return alert(checkedData.msg)
+    setErrMsg(checkedData.msg)
   }
+
   return (
     <div className='Login'>
-      <MemoizedLoginForm 
+      <LoginForm 
+        msg={errMsg}
         onChange={handleChange} 
         formData={formData}
         onSubmit={onSubmit} />

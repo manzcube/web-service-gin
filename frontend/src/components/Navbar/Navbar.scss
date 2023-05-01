@@ -1,0 +1,50 @@
+/* COMPONENTS RULESETS */
+.Navbar {
+    position: absolute;
+    right: 10ch;
+    display: flex;
+    font-size: 1.5ch;
+    align-items: center;
+    text-transform: uppercase;
+    gap: 5ch;
+    padding: 2ch;
+    .navbar-link {
+      display: inline-block;
+      position: relative;
+      color: #d5d5d5;
+      text-decoration: none;
+    }  
+    .navbar-link::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #d5d5d5;
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }  
+    .navbar-link:hover::after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+    
+    .session-button {
+      color: #d5d5d5;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 1ch 2ch;
+      border: 1px solid #d5d5d5 !important;
+      background: transparent;
+      border: none;
+      transition: all .5s ease-in-out;
+      &:hover {
+        background: #d5d5d5;
+        color: #3e3e3e;
+        cursor: pointer;
+        transition: all .5s ease-in-out;
+      }
+    }
+  }
